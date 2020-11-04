@@ -6,6 +6,7 @@ import connectDB from './config/db.js';
 
 import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 // mounting, anything going to api/products goes to productRoutes
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/order', orderRoutes);
 
 // middleware for routes not found (404)
 app.use(notFound);
