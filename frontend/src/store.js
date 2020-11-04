@@ -13,7 +13,10 @@ import {
   userUpdateProfileReducer,
 } from './reducers/userReducers';
 
-import { orderCreateReducer } from './reducers/orderReducers';
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+} from './reducers/orderReducers';
 
 // combining the different reducers
 const reducer = combineReducers({
@@ -25,6 +28,7 @@ const reducer = combineReducers({
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
   orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
 });
 
 // variable for cartItems to add to initial state
