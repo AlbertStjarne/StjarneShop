@@ -62,7 +62,7 @@ const UserEditScreen = ({ match, history }) => {
           <Message variant='danger'>{error}</Message>
         ) : (
           <Form onSubmit={submitHandler}>
-            <Form.Group>
+            <Form.Group controlId='name'>
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type='name'
@@ -72,7 +72,7 @@ const UserEditScreen = ({ match, history }) => {
               ></Form.Control>
             </Form.Group>
 
-            <Form.Group>
+            <Form.Group controlId='email'>
               <Form.Label>Email Address</Form.Label>
               <Form.Control
                 type='email'
