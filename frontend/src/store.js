@@ -24,6 +24,7 @@ import {
   orderDetailsReducer,
   orderPayReducer,
   orderListMyPayReducer,
+  orderListReducer,
 } from './reducers/orderReducers';
 
 // combining the different reducers
@@ -45,6 +46,7 @@ const reducer = combineReducers({
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
   orderListMy: orderListMyPayReducer,
+  orderList: orderListReducer,
 });
 
 // variable for cartItems to add to initial state
