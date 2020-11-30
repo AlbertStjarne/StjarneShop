@@ -17,17 +17,13 @@ connectDB();
 
 const app = express();
 
-// accept json data in the body
-app.use(express.json());
-
-// morgan, only to run i dev
+// morgan, only to run in dev
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.get('/', (req, res) => {
-  res.send('API is running');
-});
+// accept json data in the body
+app.use(express.json());
 
 // mounting, anything going to api/products goes to productRoutes
 app.use('/api/products', productRoutes);
@@ -43,6 +39,21 @@ app.get('/api/config/paypal', (req, res) =>
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
+if (process.env.NODE_ENV === 'production') {
+  // setting build folder to a static folder
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+  // any route not being api (above) will point to below index.html
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+  );
+} else {
+  // if not in production
+  app.get('/', (req, res) => {
+    res.send('API is running');
+  });
+}
+
 // middleware for routes not found (404)
 app.use(notFound);
 
@@ -50,7 +61,7 @@ app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-
+console.log('port..:', process.env.PORT);
 app.listen(
   PORT,
   console.log(
